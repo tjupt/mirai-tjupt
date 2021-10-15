@@ -141,6 +141,10 @@ class Main {
                         msgString = msgString.replace(" ", "");
                         if (msgString.contains("谢") || msgString.contains("蟹蟹") || msgString.contains("鞋鞋")
                                 || msgString.contains("謝") || msgString.contains("身寸") || msgString.contains("三克")
+                                || msgString.contains("三扣") || msgString.contains("阿里嘎多") || msgString.contains("ありがと")
+                                || msgString.contains("감사") || msgString.contains("Merci") || msgString.contains("kiitos")
+                                || msgString.contains("Dank") || msgString.contains("Grac") || msgString.contains("Graz")
+                                || msgString.contains("Tak") || msgString.contains("спасибо") || msgString.contains("Aliquam")
                                 || msgString.contains("thank") || msgString.contains("3q") || msgString.contains("3Q")
                                 || msgString.contains("xie") || msgString.contains("thx") || msgString.contains("xx")) {
                             event.getGroup().sendMessage(new At(event.getSender().getId()).plus("不客气，爆个照吧"));
