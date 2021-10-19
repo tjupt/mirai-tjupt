@@ -157,6 +157,7 @@ class Main {
             public ListeningStatus onJoinRequestEvent(MemberJoinRequestEvent event) {
                 if (event.getGroupId() == TEMP_GROUP || event.getGroupId() == ADMIN_GROUP) {
                     event.ignore(false);
+                    return ListeningStatus.LISTENING;
                 }
 
                 // 判断重复加群
