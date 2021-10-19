@@ -16,6 +16,7 @@ import net.mamoe.mirai.event.events.MemberJoinRequestEvent;
 import net.mamoe.mirai.event.events.FriendMessageEvent;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 import net.mamoe.mirai.event.events.GroupTempMessageEvent;
+import net.mamoe.mirai.event.events.NudgeEvent;
 import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.BotConfiguration;
 import okhttp3.*;
@@ -121,7 +122,7 @@ class Main {
                             event.getSender().mute(30);
                             event.getGroup().sendMessage(new At(event.getSender().getId()).plus("为方便管理，请将群名片改为 TJUPT-你的站内用户名"));
                         }
-    
+
                         String msgString = Main.toString(event.getMessage());
                         msgString = msgString.replace(" ", "");
                         if (msgString.contains("谢") || msgString.contains("蟹蟹") || msgString.contains("鞋鞋")
@@ -146,7 +147,7 @@ class Main {
                             // event.getGroup().sendMessage(MessageUtils.newImage("").plus("请按照图片所示重置IE设置"));
                         } else if (msgString.contains("离校模式")) {
                             // event.getGroup().sendMessage(MessageUtils.newImage("").plus("请前往网站控制面板的个人设置页打开「离校模式」，并在BT客户端中将ipfilter设置为false"));
-                        }    
+                        }
                     }
                 }
 
@@ -254,6 +255,15 @@ class Main {
                             event.getGroup().sendMessage(new At(event.getMember().getId()).plus("为方便管理，请将群名片改为 TJUPT-你的站内用户名"));
                         }
                     }
+                }
+
+                return ListeningStatus.LISTENING;
+            }
+
+            @EventHandler
+            public ListeningStatus onNudgedEvent(NudgeEvent event) {
+                if (event.getTarget().getId() == QQ) {
+                    event.getFrom().nudge().sendTo(event.getSubject());
                 }
 
                 return ListeningStatus.LISTENING;
