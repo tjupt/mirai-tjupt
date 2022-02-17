@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema/v1.json",
+  "description": "Mirai-TJUPT 自动回复配置文件",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "title": "please use https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
+      "description": "请使用 https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
+      "default": "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
+      "enum": [
+        "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
+        "./schema/v1.json"
+      ]
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "description": "自动回复规则集",
+        "type": "object",
+        "properties": {
+          "target": {
+            "$id": "/properties/rule/target",
+            "type": "string",
+            "title": "Target Group",
+            "description": "规则目标群聊：admin, temp, user, private",
+            "default": "user",
+            "example": [
+              "user",
+              "temp",
+              "admin",
+              "private"
+            ],
+            "enum": [
+              "user",
+              "temp",
+              "admin",
+              "private"
+            ]
+          },
+          "keywords": {
+            "type": "array",
+            "title": "Keyword list",
+            "description": "触发规则的关键词组",
+            "minItems": 1,
+            "uniqueItems": true,
+            "example": [
+              "谢谢",
+              "多谢"
+            ]
+          },
+          "reply_text": {
+            "type": "string",
+            "title": "Reply text",
+            "description": "回复语句",
+            "example": [
+              "不客气，爆个照吧"
+            ]
+          },
+          "reply_type": {
+            "type": "string",
+            "title": "Reply type",
+            "description": "回复方式：quote/at",
+            "default": "quote",
+            "example": [
+              "quote",
+              "at"
+            ],
+            "enum": [
+              "quote",
+              "at"
+            ]
+          }
+        },
+        "required": [
+          "keywords",
+          "reply_text"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
