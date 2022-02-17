@@ -6,11 +6,11 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "title": "please use https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
-      "description": "请使用 https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
-      "default": "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
+      "title": "please use https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema/v1.json",
+      "description": "请使用 https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema/v1.json",
+      "default": "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema/v1.json",
       "enum": [
-        "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema.json",
+        "https://cdn.jsdelivr.net/gh/tjupt/mirai-tjupt/schema/v1.json",
         "./schema/v1.json"
       ]
     },
