@@ -73,6 +73,16 @@ final class Main {
                 final QuoteReply quote = new QuoteReply(event.getSource());
                 final At at = new At(event.getSender().getId());
 
+                if (event.getGroup().getId() == config.getUserGroup0Id() ||
+                        event.getGroup().getId() == config.getUserGroup1Id()) {
+                    if (!event.getSenderName().startsWith("TJUPT-") &&
+                            event.getSender().getPermission() == MemberPermission.MEMBER &&
+                            !config.getExcludedUserIds().contains(event.getSender().getId())) {
+                        event.getSender().mute(30);
+                        event.getGroup().sendMessage(at.plus("为方便管理，请将群名片改为 TJUPT-你的站内用户名"));
+                    }
+                }
+
                 String target;
                 if (event.getGroup().getId() == config.getTempGroupId()) {
                     target = "temp";
