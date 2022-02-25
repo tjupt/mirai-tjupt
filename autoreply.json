@@ -54,6 +54,7 @@
       ],
       "reply_text": "hosts修改教程：https://t.cn/A6IWzWtJ"
     },
+    /*
     {
       "target": "temp",
       "keywords": [
@@ -116,6 +117,7 @@
       ],
       "reply_text": "微软即将停止支持IE浏览器，很多新Web网页技术无法在IE浏览器上正常工作，请使用Chrome、Firefox或者新版Edge浏览器。\n 如是360、搜狗等浏览器，请切换浏览器模式至极速模式再次尝试。"
     },
+    */
     {
       "target": "private",
       "keywords": [
