@@ -35,6 +35,67 @@
     {
       "target": "user",
       "keywords": [
+        "北邮人",
+        "byr",
+        "葡萄",
+        "putao",
+        "蒲公英",
+        "女仆",
+        "npu",
+        "南洋",
+        "知行",
+        "六维",
+        "6v",
+        "ttg",
+        "TTG",
+        "听听歌",
+        "套套哥",
+        "mt",
+        "MT",
+        "馒头",
+        "hdc",
+        "瓷器",
+        "hdsky",
+        "天空",
+        "chd",
+        "CHD",
+        "彩虹岛",
+        "cmct",
+        "草莓餐厅",
+        "pt之友",
+        "猫站",
+        "ourbits",
+        "我堡",
+        "opencd",
+        "皇后",
+        "柠檬",
+        "铃音",
+        "海豚",
+        "海豹",
+        "ptp",
+        "葡萄皮",
+        "hdb",
+        "海德堡",
+        "btn",
+        "鼻涕妞",
+        "ipt",
+        "IPT"
+      ],
+      "reply_text": "请勿讨论其他站点",
+      "reply_type": "at"
+    },
+    {
+      "target": "user",
+      "keywords": [
+        "求邀",
+        "求药"
+      ],
+      "reply_text": "发放/索要邀请码请在论坛邀请区交流",
+      "reply_type": "at"
+    },
+    {
+      "target": "user",
+      "keywords": [
         "红种",
         "未工作"
       ],
@@ -47,6 +108,7 @@
       ],
       "reply_text": "本站备用地址：https://tju.pt ，仅供临时使用"
     },
+    /*
     {
       "target": "user",
       "keywords": [
@@ -54,7 +116,6 @@
       ],
       "reply_text": "hosts修改教程：https://t.cn/A6IWzWtJ"
     },
-    /*
     {
       "target": "temp",
       "keywords": [
@@ -124,7 +185,7 @@
         "登录",
         "登陆"
       ],
-      "reply_text": "目前网站可以正常访问，如果您依旧无法访问，请使用备用地址 https://tju.pt 或按此教程修改hosts https://share.mubu.com/doc/3xgFtqmnEym"
+      "reply_text": "目前网站可以正常访问，如果您依旧无法访问，请使用备用地址 https://tju.pt ，仅供临时使用"
     }
   ]
 }
