@@ -107,6 +107,20 @@
     {
       "target": "user",
       "keywords": [
+        "vpn",
+        "VPN",
+        "翻墙",
+        "番羽土啬",
+        "科学上网",
+        "shadowsocks",
+        "v2ray"
+      ],
+      "reply_text": "请勿讨论此类话题",
+      "reply_type": "at"
+    },
+    {
+      "target": "user",
+      "keywords": [
         "红种",
         "未工作"
       ],
