@@ -90,7 +90,10 @@
         "hdarea",
         "hd4fans",
         "兽站",
-        "观众"
+        "观众",
+        "HITPT",
+        "hitpt",
+        "百川"
       ],
       "reply_text": "请勿讨论其他站点",
       "reply_type": "at"
