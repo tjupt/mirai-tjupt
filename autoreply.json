@@ -136,6 +136,21 @@
       ],
       "reply_text": "本站备用地址：https://tju.pt ，仅供临时使用"
     },
+    {
+      "target": "user",
+      "keywords": [
+        "离校模式"
+      ],
+      "reply_text": "如果当前IPv4网络是非按流量计费的，请打开离校模式并关闭ipfilter：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=15457 \n\n 如果不是天大用户，在打开离校模式的同时，也请关闭多Tracker的选项。"
+    },
+    {
+      "target": "temp",
+      "keywords": [
+        "不到邮件",
+        "没有邮件"
+      ],
+      "reply_text": "请查看邮箱的垃圾箱以及邮箱网关拦截记录。如果没有，请把postmaster@tjupt.org加入收信白名单之后重新获取一次邮件。\n\n 如果经过上述操作仍找不到邮件，请在群里给出你的edu邮箱。"
+    },
     /*
     {
       "target": "user",
