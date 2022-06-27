@@ -141,7 +141,7 @@
       "keywords": [
         "离校模式"
       ],
-      "reply_text": "如果当前IPv4网络是非按流量计费的，请打开离校模式并关闭ipfilter：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=15457 \n\n 如果不是天大用户，在打开离校模式的同时，也请关闭多Tracker的选项。"
+      "reply_text": "如果当前IPv4网络不是按流量计费的，请打开离校模式并关闭ipfilter：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=15457 \n\n如果不是天大用户，在打开离校模式的同时，也请关闭多Tracker的选项。"
     },
     {
       "target": "temp",
@@ -152,7 +152,7 @@
         "没收到",
         "收不到"
       ],
-      "reply_text": "请查看邮箱的垃圾箱以及邮箱网关拦截记录。如果没有，请把postmaster@tjupt.org加入收信白名单之后重新获取一次邮件。\n\n 如果经过上述操作仍找不到邮件，请在群里给出你的edu邮箱。"
+      "reply_text": "请查看邮箱的垃圾箱以及邮箱网关拦截记录。如果没有，请把postmaster@tjupt.org加入收信白名单之后重新获取一次邮件。\n\n如果经过上述操作仍找不到邮件，请在群里给出你的edu邮箱。"
     },
     /*
     {
