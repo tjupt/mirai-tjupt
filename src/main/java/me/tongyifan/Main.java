@@ -94,7 +94,7 @@ final class Main {
 
                 List<Rule> targetRuleset = ruleSet.getTargetRules(target);
                 for (Rule rule : targetRuleset) {
-                    if (rule.getKeywords().stream().anyMatch(msgString::contains)) {
+                    if (rule.getKeywords().stream().anyMatch(keyword -> msgString.toLowerCase().contains(keyword))) {
                         if ("at".equals(rule.getReplyType())) {
                             event.getGroup().sendMessage(at.plus(rule.getReplyText()));
                             return ListeningStatus.LISTENING;
