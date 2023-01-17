@@ -95,7 +95,8 @@
         "兽站",
         "观众",
         "hitpt",
-        "百川"
+        "百川",
+        "ptt"
       ],
       "reply_text": "请勿讨论其他站点",
       "reply_type": "at"
@@ -113,7 +114,6 @@
       "target": "user",
       "keywords": [
         "vpn",
-        "VPN",
         "翻墙",
         "番羽土啬",
         "科学上网",
