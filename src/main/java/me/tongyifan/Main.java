@@ -13,12 +13,7 @@ import net.mamoe.mirai.contact.NormalMember;
 import net.mamoe.mirai.event.EventHandler;
 import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
-import net.mamoe.mirai.event.events.FriendMessageEvent;
-import net.mamoe.mirai.event.events.GroupMessageEvent;
-import net.mamoe.mirai.event.events.GroupTempMessageEvent;
-import net.mamoe.mirai.event.events.MemberCardChangeEvent;
-import net.mamoe.mirai.event.events.MemberJoinRequestEvent;
-import net.mamoe.mirai.event.events.NudgeEvent;
+import net.mamoe.mirai.event.events.*;
 import net.mamoe.mirai.message.data.At;
 import net.mamoe.mirai.message.data.MessageChain;
 import net.mamoe.mirai.message.data.QuoteReply;
@@ -94,7 +89,9 @@ final class Main {
 
                 List<Rule> targetRuleset = ruleSet.getTargetRules(target);
                 for (Rule rule : targetRuleset) {
-                    if (rule.getKeywords().stream().anyMatch(msgString::contains)) {
+                    if (rule.getKeywords().stream().anyMatch(
+                            keyword -> msgString.toLowerCase().contains(keyword.toLowerCase()))
+                    ) {
                         if ("at".equals(rule.getReplyType())) {
                             event.getGroup().sendMessage(at.plus(rule.getReplyText()));
                             return ListeningStatus.LISTENING;
