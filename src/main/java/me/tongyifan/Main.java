@@ -55,7 +55,7 @@ final class Main {
         final Bot bot = BotFactory.INSTANCE.newBot(config.getAccount(), config.getPassword(), new BotConfiguration() {
             {
                 fileBasedDeviceInfo("deviceInfo.json");
-                setProtocol(MiraiProtocol.ANDROID_PHONE);
+                setProtocol(MiraiProtocol.IPAD);
             }
         });
 
