@@ -185,6 +185,7 @@ final class Main {
                 if (msgString.contains("获取登录链接")) {
                     String response = request.getLoginSecret(event.getSender().getId());
                     event.getSender().sendMessage(response);
+                    return ListeningStatus.LISTENING;
                 }
 
                 List<Rule> targetRuleset = RULE_SET.getTargetRules("private");
@@ -217,6 +218,7 @@ final class Main {
                 if (msgString.contains("获取登录链接")) {
                     String response = request.getLoginSecret(event.getSender().getId());
                     event.getSender().sendMessage(response);
+                    return ListeningStatus.LISTENING;
                 }
 
                 List<Rule> targetRuleset = RULE_SET.getTargetRules("private");
