@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 final class Main {
-    private static final RuleSet ruleSet = new RuleSet();
+    private static final RuleSet RULE_SET = new RuleSet();
     private static Config config;
 
     private Main() {
@@ -43,7 +43,7 @@ final class Main {
         }
 
         try {
-            ruleSet.loadRuleSet();
+            RULE_SET.loadRuleSet();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("从远端获取自动回复规则集失败，本地无可用规则，程序退出");
@@ -87,7 +87,7 @@ final class Main {
                     target = "user";
                 }
 
-                List<Rule> targetRuleset = ruleSet.getTargetRules(target);
+                List<Rule> targetRuleset = RULE_SET.getTargetRules(target);
                 for (Rule rule : targetRuleset) {
                     if (rule.getKeywords().stream().anyMatch(
                             keyword -> msgString.toLowerCase().contains(keyword.toLowerCase()))
@@ -182,7 +182,12 @@ final class Main {
             public ListeningStatus onTempMessage(GroupTempMessageEvent event) {
                 String msgString = Main.toString(event.getMessage());
 
-                List<Rule> targetRuleset = ruleSet.getTargetRules("private");
+                if (msgString.contains("获取登录链接")) {
+                    String response = request.getLoginSecret(event.getSender().getId());
+                    event.getSender().sendMessage(response);
+                }
+
+                List<Rule> targetRuleset = RULE_SET.getTargetRules("private");
                 for (Rule rule : targetRuleset) {
                     if (rule.getKeywords().stream().anyMatch(msgString::contains)) {
                         event.getSender().sendMessage(rule.getReplyText());
@@ -199,7 +204,7 @@ final class Main {
 
                 if (msgString.contains("更新规则集")) {
                     try {
-                        ruleSet.pullRuleSetFromRemote();
+                        RULE_SET.pullRuleSetFromRemote();
                         event.getSender().sendMessage("更新规则集成功");
                         return ListeningStatus.LISTENING;
                     } catch (IOException e) {
@@ -209,7 +214,12 @@ final class Main {
                     }
                 }
 
-                List<Rule> targetRuleset = ruleSet.getTargetRules("private");
+                if (msgString.contains("获取登录链接")) {
+                    String response = request.getLoginSecret(event.getSender().getId());
+                    event.getSender().sendMessage(response);
+                }
+
+                List<Rule> targetRuleset = RULE_SET.getTargetRules("private");
                 for (Rule rule : targetRuleset) {
                     if (rule.getKeywords().stream().anyMatch(msgString::contains)) {
                         event.getSender().sendMessage(rule.getReplyText());

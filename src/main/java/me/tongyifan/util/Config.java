@@ -1,5 +1,7 @@
 package me.tongyifan.util;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +20,7 @@ public class Config {
     private String baseUrl;
     private String token;
     private String secret;
+    private List<Long> loginAdministrator;
 
     private long adminGroupId;
     private long userGroup0Id;
@@ -73,6 +76,15 @@ public class Config {
         this.secret = secret;
     }
 
+    public List<Long> getLoginAdministrator() {
+        return loginAdministrator;
+    }
+
+    public void setLoginAdministrator(@NotNull String loginAdministrator) {
+        this.loginAdministrator = Arrays.stream(loginAdministrator.split(",")).map(Long::parseLong).collect(Collectors.toList());
+
+    }
+
     public long getAdminGroupId() {
         return adminGroupId;
     }
@@ -109,8 +121,8 @@ public class Config {
         return excludedUserIds;
     }
 
-    public void setExcludedUserIds(List<Long> excludedUserIds) {
-        this.excludedUserIds = excludedUserIds;
+    public void setExcludedUserIds(@NotNull String excludedUserIds) {
+        this.excludedUserIds = Arrays.stream(excludedUserIds.split(",")).map(Long::parseLong).collect(Collectors.toList());
     }
 
     private void loadConfig() throws IOException {
@@ -133,6 +145,7 @@ public class Config {
         setUserGroup1Id(Long.parseLong(prop.getProperty("qq.user_group_1")));
         setTempGroupId(Long.parseLong(prop.getProperty("qq.temporary_group")));
 
-        setExcludedUserIds(Arrays.stream(prop.getProperty("qq.excluded_users").split(",")).map(Long::parseLong).collect(Collectors.toList()));
+        setExcludedUserIds(prop.getProperty("qq.excluded_users"));
+        setLoginAdministrator(prop.getProperty("qq.login_administrator"));
     }
 }

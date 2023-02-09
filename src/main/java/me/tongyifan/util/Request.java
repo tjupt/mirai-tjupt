@@ -61,6 +61,44 @@ public class Request {
         }
     }
 
+    public String getLoginSecret(long qq) {
+        String role = "member";
+        if (config.getLoginAdministrator().contains(qq)) {
+            role = "admin";
+        }
+        Map<String, String> params = new LinkedHashMap<>();
+        params.put("platform", "qq");
+        params.put("platform_id", Long.toString(qq));
+        params.put("role", role);
+
+        final Map<String, String> finalParams = prepareRequest(params);
+
+        HttpUrl.Builder httpBuilder = Objects.requireNonNull(HttpUrl.parse(config.getBaseUrl() + "api_letmelogin.php")).newBuilder();
+
+        okhttp3.Request request = new okhttp3.Request.Builder().url(httpBuilder.build()).post(RequestBody.create(new Gson().toJson(finalParams), MediaType.parse("application/json; charset=utf-8"))).build();
+
+        BaseResponse responseObject;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            String responseBody = Objects.requireNonNull(response.body()).string();
+            responseBody = responseBody.replace(":false,", ":0,").replace(":true,", ":1,");
+            responseObject = new Gson().fromJson(responseBody, BaseResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "获取登录链接时出现错误，请重试或联系管理员";
+        }
+
+        if (responseObject.getStatus() == 0) {
+            return "https://tjupt.org/letmelogin.php?secret=" + responseObject.getData().toString() + "\n有效期5分钟，尝试次数1次，请尽快登录。此链接仅可本人使用，其他账户登录无效。\n若曾经登录失败，请重启浏览器后再打开链接以清除登录记录。对于Chrome内核浏览器，你可以在浏览器地址栏输入「chrome://restart」来重启浏览器。";
+        } else if (responseObject.getStatus() == -1) {
+            return "此QQ尚未关联北洋园PT账号，请联系管理员";
+        } else if (responseObject.getStatus() == -2) {
+            return "30分钟内仅可获取一次临时链接";
+        } else {
+            return "获取登录链接时出现错误，请重试或联系管理员";
+        }
+    }
+
     private Map<String, String> prepareRequest(final Map<String, String> params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(config.getToken());
