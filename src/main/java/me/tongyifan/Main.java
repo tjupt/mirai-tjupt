@@ -14,9 +14,7 @@ import net.mamoe.mirai.event.EventHandler;
 import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
 import net.mamoe.mirai.event.events.*;
-import net.mamoe.mirai.message.data.At;
-import net.mamoe.mirai.message.data.MessageChain;
-import net.mamoe.mirai.message.data.QuoteReply;
+import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.BotConfiguration;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jetbrains.annotations.NotNull;
@@ -75,6 +73,20 @@ final class Main {
                             !config.getExcludedUserIds().contains(event.getSender().getId())) {
                         event.getSender().mute(30);
                         event.getGroup().sendMessage(at.plus("为方便管理，请将群名片改为 TJUPT-你的站内用户名"));
+                        return ListeningStatus.LISTENING;
+                    }
+                }
+
+                if (event.getMessage().contains(At.Key)) {
+                    At receivedAt = (At) event.getMessage().stream().filter(At.class::isInstance).findFirst().orElse(null);
+                    if (receivedAt != null && receivedAt.getTarget() == event.getBot().getId()) {
+                        PlainText msg = (PlainText) event.getMessage().stream().filter(PlainText.class::isInstance).findFirst().orElse(new PlainText(""));
+
+                        if ("获取登录链接".equals(msg.getContent().strip()) || "获取登陆链接".equals(msg.getContent().strip())) {
+                            String response = request.getLoginSecret(event.getSender().getId());
+                            event.getGroup().sendMessage(quote.plus(response));
+                            return ListeningStatus.LISTENING;
+                        }
                     }
                 }
 
@@ -182,7 +194,7 @@ final class Main {
             public ListeningStatus onTempMessage(GroupTempMessageEvent event) {
                 String msgString = Main.toString(event.getMessage());
 
-                if (msgString.contains("获取登录链接")) {
+                if (msgString.contains("获取登录链接") || msgString.contains("获取登陆链接")) {
                     String response = request.getLoginSecret(event.getSender().getId());
                     event.getSender().sendMessage(response);
                     return ListeningStatus.LISTENING;
@@ -215,7 +227,7 @@ final class Main {
                     }
                 }
 
-                if (msgString.contains("获取登录链接")) {
+                if (msgString.contains("获取登录链接") || msgString.contains("获取登陆链接")) {
                     String response = request.getLoginSecret(event.getSender().getId());
                     event.getSender().sendMessage(response);
                     return ListeningStatus.LISTENING;
