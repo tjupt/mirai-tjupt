@@ -2,9 +2,9 @@ package me.tongyifan.util;
 
 import com.google.gson.Gson;
 import me.tongyifan.entity.BaseResponse;
+import me.tongyifan.entity.BindUserResponse;
+import me.tongyifan.entity.JoinGroupEventResponseAction;
 import okhttp3.*;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -24,7 +24,7 @@ public class Request {
         this.config = config;
     }
 
-    public ImmutablePair<Boolean, List<String>> bindUser(String username, String passkey, long qq) {
+    public BindUserResponse bindUser(String username, String passkey, long qq) {
         Map<String, String> params = new LinkedHashMap<>();
         params.put("type", "link_by_uid");
         params.put("platform", "qq");
@@ -42,22 +42,21 @@ public class Request {
         try {
             Response response = okHttpClient.newCall(request).execute();
             String responseBody = Objects.requireNonNull(response.body()).string();
-            responseBody = responseBody.replace(":false,", ":0,").replace(":true,", ":1,");
             responseObject = new Gson().fromJson(responseBody, BaseResponse.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return ImmutablePair.of(false, null);
+            return new BindUserResponse(JoinGroupEventResponseAction.REJECT, "网络错误，请稍后重试", null);
         }
 
         if (responseObject.getStatus() == 0) {
-            return ImmutablePair.of(true, null);
+            return new BindUserResponse(JoinGroupEventResponseAction.ACCEPT, null, null);
         } else if (responseObject.getStatus() == 1) {
             // 绑定成功，但存在警告
-            return ImmutablePair.of(true, castList(responseObject.getData(), String.class));
+            return new BindUserResponse(JoinGroupEventResponseAction.ACCEPT, null, "用户的加群请求可能存在违规行为，建议进行检查\n" + String.join("\n", castList(responseObject.getData(), String.class)));
         } else if (responseObject.getStatus() == -1) {
-            return ImmutablePair.of(false, null);
+            return new BindUserResponse(JoinGroupEventResponseAction.REJECT, "未查询到信息，请检查用户名是否正确", null);
         } else {
-            return ImmutablePair.of(false, Collections.singletonList(responseObject.getMsg()));
+            return new BindUserResponse(JoinGroupEventResponseAction.IGNORE, null, "用户的加群请求触发了警告规则，需要手动处理\n" + responseObject.getMsg());
         }
     }
 
@@ -81,7 +80,6 @@ public class Request {
         try {
             Response response = okHttpClient.newCall(request).execute();
             String responseBody = Objects.requireNonNull(response.body()).string();
-            responseBody = responseBody.replace(":false,", ":0,").replace(":true,", ":1,");
             responseObject = new Gson().fromJson(responseBody, BaseResponse.class);
         } catch (IOException e) {
             e.printStackTrace();

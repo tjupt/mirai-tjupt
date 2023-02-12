@@ -1,6 +1,8 @@
 package me.tongyifan;
 
 import kotlin.coroutines.CoroutineContext;
+import me.tongyifan.entity.BindUserResponse;
+import me.tongyifan.entity.JoinGroupEventResponseAction;
 import me.tongyifan.entity.Rule;
 import me.tongyifan.entity.RuleSet;
 import me.tongyifan.util.Config;
@@ -158,8 +160,8 @@ final class Main {
                     username = answer;
                 }
 
-                ImmutablePair<Boolean, List<String>> response = request.bindUser(username, passkey, event.getFromId());
-                if (response.getLeft()) {
+                BindUserResponse response = request.bindUser(username, passkey, event.getFromId());
+                if (response.getAction() == JoinGroupEventResponseAction.ACCEPT) {
                     event.accept();
 
                     int retry = 5;
@@ -179,12 +181,14 @@ final class Main {
 
                         retry -= 1;
                     }
+                } else if (response.getAction() == JoinGroupEventResponseAction.REJECT) {
+                    event.reject(false, response.getResponseToUser());
                 } else {
                     event.ignore(false);
                 }
 
-                if (response.getRight() != null) {
-                    Objects.requireNonNull(bot.getGroup(config.getAdminGroupId())).sendMessage(String.join("\n", response.getRight()));
+                if (response.getMessagesToAdmin() != null) {
+                    Objects.requireNonNull(bot.getGroup(config.getAdminGroupId())).sendMessage(response.getMessagesToAdmin());
                 }
 
                 return ListeningStatus.LISTENING;
