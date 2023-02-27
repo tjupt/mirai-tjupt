@@ -1,5 +1,6 @@
 package me.tongyifan.util;
 
+import net.mamoe.mirai.utils.BotConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class Config {
     private long account;
     private String password;
+    private BotConfiguration.MiraiProtocol protocol;
 
     private String baseUrl;
     private String token;
@@ -50,6 +52,14 @@ public class Config {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public BotConfiguration.MiraiProtocol getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = BotConfiguration.MiraiProtocol.valueOf(protocol);
     }
 
     public String getBaseUrl() {
@@ -136,6 +146,7 @@ public class Config {
 
         setAccount(Long.parseLong(prop.getProperty("qq.account_id")));
         setPassword(prop.getProperty("qq.account_password"));
+        setProtocol(prop.getProperty("qq.protocol"));
 
         setBaseUrl(prop.getProperty("tjupt.base_url"));
         setToken(prop.getProperty("tjupt.api_token"));
