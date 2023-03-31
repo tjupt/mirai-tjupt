@@ -153,16 +153,18 @@
     {
       "target": "user",
       "keywords": [
-        "离校模式"
+        "离校模式",
+        "公网IPv4选项",
+        "公网IPv4开关"
       ],
-      "reply_text": "如果当前IPv4网络不是按流量计费的，请打开离校模式并关闭ipfilter：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=15457 \n\n如果不是天大用户，在打开离校模式的同时，也请关闭多Tracker的选项。"
+      "reply_text": "如果当前IPv4网络不是按流量计费的，请打开“公网IPv4”选项(离校模式)并关闭下载客户端的ipfilter：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=15457 \n如果不是天大用户，在打开公网IPv4的同时，也请关闭“天大专用Tracker”的选项。"
     },
     {
       "target": "user",
       "keywords": [
-        "我是冷酷无情的机器人"
+        "获取登"
       ],
-      "reply_text": "请手动@我并发送“获取登录链接”，不要复制别人的消息"
+      "reply_text": "当前可直接登录"
     },
     {
       "target": "temp",
