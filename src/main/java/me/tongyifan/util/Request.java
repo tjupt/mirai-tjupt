@@ -88,6 +88,8 @@ public class Request {
 
         if (responseObject.getStatus() == 0) {
             return "https://tjupt.org/letmelogin.php?secret=" + responseObject.getData().toString() + "\n有效期5分钟，尝试次数1次，请尽快登录。此链接仅可本人使用，其他账户登录无效。\n若曾经登录失败，请重启浏览器后再打开链接以清除登录记录。对于Chrome内核浏览器，你可以在浏览器地址栏输入「chrome://restart」来重启浏览器。";
+        } else if (responseObject.getStatus() == 1) {
+            return "当前站点可直接登录，无需获取登录链接";
         } else if (responseObject.getStatus() == -1) {
             return "此QQ尚未关联北洋园PT账号，请联系管理员";
         } else if (responseObject.getStatus() == -2) {
