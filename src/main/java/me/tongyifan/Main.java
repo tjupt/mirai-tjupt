@@ -18,8 +18,8 @@ import net.mamoe.mirai.event.SimpleListenerHost;
 import net.mamoe.mirai.event.events.*;
 import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.BotConfiguration;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jetbrains.annotations.NotNull;
+import xyz.cssxsh.mirai.tool.FixProtocolVersion;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,6 +52,7 @@ final class Main {
 
         Request request = new Request(config);
 
+        FixProtocolVersion.update();
         final Bot bot = BotFactory.INSTANCE.newBot(config.getAccount(), config.getPassword(), new BotConfiguration() {
             {
                 fileBasedDeviceInfo("deviceInfo.json");
