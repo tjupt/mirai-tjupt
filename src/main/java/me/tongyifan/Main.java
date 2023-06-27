@@ -9,6 +9,7 @@ import me.tongyifan.util.Config;
 import me.tongyifan.util.Request;
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.BotFactory;
+import net.mamoe.mirai.auth.BotAuthorization;
 import net.mamoe.mirai.contact.ContactList;
 import net.mamoe.mirai.contact.MemberPermission;
 import net.mamoe.mirai.contact.NormalMember;
@@ -19,6 +20,7 @@ import net.mamoe.mirai.event.events.*;
 import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.BotConfiguration;
 import org.jetbrains.annotations.NotNull;
+import xyz.cssxsh.mirai.device.MiraiDeviceGenerator;
 import xyz.cssxsh.mirai.tool.FixProtocolVersion;
 
 import java.io.IOException;
@@ -53,12 +55,23 @@ final class Main {
         Request request = new Request(config);
 
         FixProtocolVersion.update();
-        final Bot bot = BotFactory.INSTANCE.newBot(config.getAccount(), config.getPassword(), new BotConfiguration() {
-            {
-                fileBasedDeviceInfo("deviceInfo.json");
-                setProtocol(config.getProtocol());
-            }
-        });
+
+        final Bot bot;
+        if (BotConfiguration.MiraiProtocol.ANDROID_WATCH.equals(config.getProtocol())) {
+            bot = BotFactory.INSTANCE.newBot(config.getAccount(), BotAuthorization.byQRCode(), new BotConfiguration() {
+                {
+                    setDeviceInfo(new MiraiDeviceGenerator()::load);
+                    setProtocol(config.getProtocol());
+                }
+            });
+        } else {
+            bot = BotFactory.INSTANCE.newBot(config.getAccount(), config.getPassword(), new BotConfiguration() {
+                {
+                    setDeviceInfo(new MiraiDeviceGenerator()::load);
+                    setProtocol(config.getProtocol());
+                }
+            });
+        }
 
         bot.login();
 
