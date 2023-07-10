@@ -22,6 +22,7 @@ import net.mamoe.mirai.utils.BotConfiguration;
 import org.jetbrains.annotations.NotNull;
 import xyz.cssxsh.mirai.device.MiraiDeviceGenerator;
 import xyz.cssxsh.mirai.tool.FixProtocolVersion;
+import xyz.cssxsh.mirai.tool.KFCFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -54,7 +55,8 @@ final class Main {
 
         Request request = new Request(config);
 
-        FixProtocolVersion.update();
+        FixProtocolVersion.sync(config.getProtocol());
+        KFCFactory.install();
 
         final Bot bot;
         if (BotConfiguration.MiraiProtocol.ANDROID_WATCH.equals(config.getProtocol())) {

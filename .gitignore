@@ -142,4 +142,5 @@ buildNumber.properties
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,java,maven
 
 config.properties
-deviceInfo.json
+device.json
+android_phone.json
