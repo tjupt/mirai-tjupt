@@ -55,7 +55,7 @@ final class Main {
 
         Request request = new Request(config);
 
-        FixProtocolVersion.sync(config.getProtocol());
+        FixProtocolVersion.fetch(config.getProtocol(), "8.9.63");
         KFCFactory.install();
 
         final Bot bot;
