@@ -37,7 +37,7 @@
         "拴q",
         "酸q"
       ],
-      "reply_text": "不客气，爆个照吧",
+      "reply_text": "不客气，发个红包吧",
       "reply_type": "at"
     },
     {
@@ -142,6 +142,29 @@
         "吊销服务器"
       ],
       "reply_text": "Tracker未正常工作导致“红种”无法正常下载的解决方法：https://t.cn/A6IWzpoF"
+    },
+    {
+      "target": "user",
+      "keywords": [
+        "Error opening Windows firewall",
+        "0x80070005"
+      ],
+      "reply_text": "这不是问题所在，先点击有问题的种子，然后点击伺服(Tracker)对客户端进行完整截图，请不要拍照"
+    },
+    {
+      "target": "user",
+      "keywords": [
+        "下载速度",
+        "上传速度",
+        "没速度",
+        "速度是0",
+        "速度为0",
+        "下载不",
+        "上传不",
+        "不能下载",
+        "不能上传"
+      ],
+      "reply_text": "为什么没有速度：连接性问题自查指南 | 检查是否可被连接 (端口是否开放)：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=19399（复制链接到浏览器打开）"
     },
     {
       "target": "user",
