@@ -162,9 +162,14 @@
         "下载不",
         "上传不",
         "不能下载",
-        "不能上传"
+        "不能上传",
+        "速度没",
+        "速度都没",
+        "速度也没",
+        "下不",
+        "不能下"
       ],
-      "reply_text": "为什么没有速度：连接性问题自查指南 | 检查是否可被连接 (端口是否开放)：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=19399（复制链接到浏览器打开）"
+      "reply_text": "PT下载/上传为什么没有速度自查指南：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=19399（复制链接到浏览器打开）"
     },
     {
       "target": "user",
