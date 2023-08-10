@@ -156,6 +156,7 @@
         "下载速度",
         "上传速度",
         "没速度",
+        "没有速度",
         "速度是0",
         "速度为0",
         "下载不",
@@ -168,7 +169,7 @@
         "下不",
         "不能下"
       ],
-      "reply_text": "PT下载/上传为什么没有速度自查指南：https://tjupt.org/forums.php?action=viewtopic&forumid=15&topicid=19399（复制链接到浏览器打开）"
+      "reply_text": "PT下载/上传为什么没有速度自查指南：https://tjupt.org/forums.php?action=viewtopic&topicid=19399（复制链接到浏览器打开）"
     },
     {
       "target": "user",
