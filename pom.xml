@@ -92,9 +92,9 @@
         <dependency>
             <groupId>xyz.cssxsh.mirai.tool</groupId>
             <artifactId>fix-protocol-version</artifactId>
-            <version>1.9.7.mirai2</version>
+            <version>1.9.11.mirai2</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/fix-protocol-version-1.9.7.mirai2.jar</systemPath>
+            <systemPath>${project.basedir}/lib/fix-protocol-version-1.9.11.mirai2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>xyz.cssxsh.mirai</groupId>
